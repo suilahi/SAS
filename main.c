@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #define MAX_TACHES 100
 #define MAX_LEN 100
  
@@ -15,9 +17,10 @@ int nombreDeTaches = 0;
 void afficherMenu () {
     printf("\n=== Menu ===\n");
     printf("1. Ajouter une tache:\n");
-    printf("2.afficher une tache:\n");
-    printf("3.modifier une tache:\n");
-    printf("4. Quitter\n");
+    printf("2. Afficher une tache:\n");
+    printf("3. Modifier une tache:\n");
+    printf("4. Supprimer une tache:\n");
+    printf("5. Quitter\n");
     printf("Choisissez une option: ");
 }
 
@@ -63,7 +66,7 @@ void modifierTache() {
     printf("aucune tache a modifier");
     return;
     }
-printf("entrer le numero de la tache a modifier (1-%d):\n",numeroTache);
+printf("entrer le numero de la tache a modifier (1-%d):\n",nombreDeTaches);
     scanf("%d",&numeroTache);
     if (numeroTache<0||numeroTache>MAX_TACHES){
         printf("numero de tache incorect\n");
@@ -87,7 +90,25 @@ printf("entrer le numero de la tache a modifier (1-%d):\n",numeroTache);
 
                 printf("tache modifie avec succes.\n");
     }
-
+    void supprimerTache(){
+        int numeroTache;
+        if (numeroTache==0){
+                    printf("aucun tache a supprimer.\n");
+                    return ;
+        }
+        printf("entrer le numero de tache a supprimer 1-%d:\n",nombreDeTaches);
+        scanf("%d",&numeroTache);
+        if(numeroTache<1||numeroTache>MAX_TACHES){
+            printf("numero de tache incorect\n");
+            return;
+        }
+        int index=numeroTache-1;
+        for (int  i=index;i<nombreDeTaches;i++){
+            taches[i]=taches[i+1];
+        }
+        nombreDeTaches--;
+        printf("tache supprime avec succes.");
+    }
    int main() {
     int choix;
 
@@ -106,14 +127,16 @@ printf("entrer le numero de la tache a modifier (1-%d):\n",numeroTache);
             case 3: 
                 modifierTache();
                 break;    
-            
-            case 4:
+            case 4 :
+                supprimerTache();
+                break;  
+            case 5:
                 printf("Au revoir !\n");
-                break;
+                exit(0);
             default:
                 printf("Option invalide, veuillez réessayer.\n");
         }
-    } while (choix != 3);
+    } while (0);
 
     return 0;
 }

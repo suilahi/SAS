@@ -136,7 +136,7 @@ printf("entrer le numero de la tache a modifier (1-%d):\n",nombreDeTaches);
             default:
                 printf("Option invalide, veuillez réessayer.\n");
         }
-    } while (0);
+    } while (1);
 
     return 0;
 }
